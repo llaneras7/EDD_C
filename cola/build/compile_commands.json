@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/angel/Desktop/Universidad/EDD/EDD_C/cola/build",
+  "command": "/usr/bin/gcc-12   -g -std=c17 -Wall -Wextra -Wpedantic -o CMakeFiles/main.dir/cola.c.o -c /home/angel/Desktop/Universidad/EDD/EDD_C/cola/cola.c",
+  "file": "/home/angel/Desktop/Universidad/EDD/EDD_C/cola/cola.c"
+},
+{
+  "directory": "/home/angel/Desktop/Universidad/EDD/EDD_C/cola/build",
+  "command": "/usr/bin/gcc-12   -g -std=c17 -Wall -Wextra -Wpedantic -o CMakeFiles/main.dir/main.c.o -c /home/angel/Desktop/Universidad/EDD/EDD_C/cola/main.c",
+  "file": "/home/angel/Desktop/Universidad/EDD/EDD_C/cola/main.c"
+}
+]
