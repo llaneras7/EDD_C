@@ -1,13 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-
-typedef struct Node * ptrnodo;
-
-struct Node{
-    int data;
-    ptrnodo next;
-};
+#include "listaEnlazada.h"
 
 void iterar(struct Node head){
     struct Node * ptrIter = &head;
@@ -70,7 +64,27 @@ void insertar_en_medio(struct Node ** direccionHead, int dato, int posicion){
         nuevo->next = ptrIter->next; //El siguiente del nuevo nodo sera el siguiente del nodo actual
         ptrIter->next = nuevo; //El siguiente del nodo actual sera el nuevo nodo
     }
-}  
+}
+
+void insertar_lista_ordenada(struct Node ** direccionHead, int dato){
+    struct Node * nuevo = (struct Node *) malloc(sizeof(struct Node));
+    if (nuevo == NULL){
+        printf("No hay memoria disponible\n");
+        exit(-1);
+    }
+    nuevo->data = dato; //Insertamos el dato en la nueva posicion de memoria
+    if((*direccionHead)==NULL || (*direccionHead)->data >= dato){ //Si la lista esta vacia o el dato es menor que el head, insertamos en la cabeza
+        nuevo->next = (*direccionHead);
+        (*direccionHead)=nuevo;
+    } else {
+        struct Node * ptrIter = *direccionHead; //Creamos un puntero auxiliar para recorrer la lista
+        while(ptrIter->next!=NULL && ptrIter->next->data < dato){ //Recorremos la lista hasta encontrar la posicion correcta
+            ptrIter = ptrIter->next;
+        }
+        nuevo->next = ptrIter->next; //El siguiente del nuevo nodo sera el siguiente del nodo actual
+        ptrIter->next = nuevo; //El siguiente del nodo actual sera el nuevo nodo
+    }
+}
 
 void destruir(struct Node ** direccionHead){
     struct Node * ptrIter = *direccionHead;
@@ -106,70 +120,7 @@ bool eliminar(struct Node ** direccionHead, int data){
 
 void mostrar(struct Node * direccionHead){
     while(direccionHead!=NULL){
-        printf("Dato: %d\n Siguiente:%p\n",direccionHead->data, direccionHead->next);
+        printf("Dato: %d\n Siguiente:%p\n",direccionHead->data, (void *)direccionHead->next);
         direccionHead = direccionHead->next;
     }
-}
-
-int main(){
-
-    struct Node * head = NULL;
-    head = (struct Node *) malloc(sizeof(struct Node));
-    
-    head->data = 3;
-    head->next = malloc(sizeof(struct Node));
-    head->next->data = 7;
-    head->next->next = malloc(sizeof(struct Node));
-    head->next->next->data = 9;
-    head->next->next->next = NULL;
-
-    iterar(*head);
-
-    printf("\nEstructura antes de insertar:\n");
-    mostrar(head);
-    insertar_cabeza(&head, 10);
-    insertar_cabeza(&head, 30);
-    insertar_cabeza(&head, 20);
-
-    printf("\nEstructura despues de insertar en la cabeza:\n");
-    mostrar(head);
-
-    insertar_cola(&head, 1);
-    insertar_cola(&head, 2);
-    
-    printf("\nEstructura despues de insertar al final:\n");
-    mostrar(head);
-
-    insertar_en_medio(&head, 100, 0);
-    insertar_en_medio(&head, 200, 2);
-    
-    printf("\nEstructura despues de insertar en medio:\n");
-    mostrar(head);
-
-    eliminar(&head,1);
-    eliminar(&head,30);
-    eliminar(&head,10);
-    eliminar(&head,20);
-
-    printf("\nEstructura despues de eliminar:\n");
-    mostrar(head);
-
-    insertar_cabeza(&head, 10);
-    insertar_cabeza(&head, 30);
-    insertar_cabeza(&head, 20);
-
-    printf("\nEstructura antes de destruir:\n");
-    mostrar(head);
-
-    destruir(&head);
-
-    printf("\nEstructura despues de destruir:\n");
-    mostrar(head);
-
-    printf("\n");
-
-    //free(head->next);
-    //free(head);
-
-    return 0;
 }
