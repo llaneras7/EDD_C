@@ -1,0 +1,3 @@
+/home/angel/Desktop/Universidad/EDD/EDD_C/cola/build/CMakeFiles/main.dir
+/home/angel/Desktop/Universidad/EDD/EDD_C/cola/build/CMakeFiles/edit_cache.dir
+/home/angel/Desktop/Universidad/EDD/EDD_C/cola/build/CMakeFiles/rebuild_cache.dir
